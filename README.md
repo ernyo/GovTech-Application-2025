@@ -11,6 +11,7 @@ Simple web application to perform simple calculations. This project is created w
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Backend
+### Framework: Spring Boot (Java)
 ### Testing: JUnit
 ### Port: 5000
 1. Run application with `mvn spring-boot:run`
