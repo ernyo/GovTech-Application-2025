@@ -4,7 +4,6 @@ Simple web application to perform simple calculations. This project is created w
 
 ## Frontend
 ### Framework: React (TypeScript)
-### Testing: Jest
 ### Port: 3000
 1. Install dependencies with `npm install`
 2. Run application with `npm start`

@@ -1,15 +1,17 @@
 package assessment.technical.govtech.services;
 
+import java.math.BigInteger;
+
 import org.springframework.stereotype.Service;
 
 @Service
 public class CalculatorService {
 	
-    public long addTwoNumbers(long firstNumber, long secondNumber) {
-        return firstNumber + secondNumber;
+    public BigInteger addTwoNumbers(BigInteger firstNumber, BigInteger secondNumber) {
+        return firstNumber.add(secondNumber);
     }
 	
-    public long subtractTwoNumbers(long firstNumber, long secondNumber) {
-        return firstNumber - secondNumber;
+    public BigInteger subtractTwoNumbers(BigInteger firstNumber, BigInteger secondNumber) {
+        return firstNumber.subtract(secondNumber);
     }
 }

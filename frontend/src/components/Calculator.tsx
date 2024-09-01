@@ -4,20 +4,38 @@ import { addTwoNumbers, subtractTwoNumbers } from '../services/CalculatorService
 const Calculator = () => {
   const [firstNumber, setFirstNumber] = useState('');
   const [secondNumber, setSecondNumber] = useState('');
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleAdd = async () => {
-    const number1 = firstNumber ? parseFloat(firstNumber) : 0;
-    const number2 = secondNumber ? parseFloat(secondNumber) : 0;
-    const result = await addTwoNumbers(number1, number2)
-    setResult(result)
+    setError(null); // Reset error before new operation
+    try {
+      const { result, error } = await addTwoNumbers(firstNumber, secondNumber);
+
+      if (error) {
+        setError(error); 
+      } else if (result) {
+        setResult(result);
+      }
+
+    } catch (err) {
+      setError('Error occurred during addition. Check input values.');
+    }
   };
 
   const handleSubtract = async () => {
-    const number1 = firstNumber ? parseFloat(firstNumber) : 0;
-    const number2 = secondNumber ? parseFloat(secondNumber) : 0;
-    const result = await subtractTwoNumbers(number1, number2)
-    setResult(result)
+    setError(null); // Reset error before new operation
+    try {
+      const { result, error } = await subtractTwoNumbers(firstNumber, secondNumber);
+
+      if (error) {
+        setError(error); 
+      } else if (result) {
+        setResult(result);
+      }
+    } catch (err) {
+      setError('Error occurred during subtraction. Check input values.');
+    }
   };
 
   return (
@@ -40,7 +58,8 @@ const Calculator = () => {
       <button onClick={handleAdd}>Add</button>
       <button onClick={handleSubtract}>Subtract</button>
       <div>
-        {result !== null && <h2>Result: {result}</h2>}
+        {result && <h2>Result: {result}</h2>}
+        {error && <p>Error: {error}</p>}
       </div>
     </div>
   );
